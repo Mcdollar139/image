@@ -1,0 +1,24 @@
+[project]
+name = "super-agent"
+version = "0.1.0"
+description = "A super intelligent agent built with the Claude Agent SDK"
+requires-python = ">=3.10"
+dependencies = [
+    "claude-agent-sdk>=0.1.0",
+    "anthropic>=0.40.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+    "duckduckgo-search>=6.0.0",
+    "rich>=13.7.0",
+]
+
+[project.scripts]
+super-agent = "super_agent.main:cli"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["super_agent*"]
