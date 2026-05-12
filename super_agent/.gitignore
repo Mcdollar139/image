@@ -8,5 +8,8 @@ venv/
 build/
 dist/
 memory_store/*.json
-memory_store/*.md
+memory_store/notes/*.md
+# Ship the default background + playbooks with the project.
 !memory_store/.gitkeep
+!memory_store/notes/background.md
+!memory_store/notes/playbook-*.md

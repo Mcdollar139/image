@@ -23,7 +23,7 @@ from claude_agent_sdk import (
 from .memory import MemoryStore
 from .prompts import build_system_prompt
 from .subagents import AGENTS
-from .tools import memory_server, web_server
+from .tools import crypto_server, memory_server, web_server
 
 
 def build_options(
@@ -38,9 +38,9 @@ def build_options(
         mcp_servers={
             "memory": memory_server,
             "web": web_server,
+            "crypto": crypto_server,
         },
         agents=AGENTS,
-        # Allow all built-in + custom MCP tools. Tighten this for production.
         allowed_tools=[
             "Read",
             "Write",
@@ -49,6 +49,7 @@ def build_options(
             "Glob",
             "Grep",
             "Task",
+            # memory
             "mcp__memory__memory_remember",
             "mcp__memory__memory_recall",
             "mcp__memory__memory_list_keys",
@@ -57,8 +58,18 @@ def build_options(
             "mcp__memory__note_list",
             "mcp__memory__note_read",
             "mcp__memory__note_search",
+            # web
             "mcp__web__web_search",
             "mcp__web__web_fetch",
+            # crypto / on-chain
+            "mcp__crypto__coingecko_price",
+            "mcp__crypto__coingecko_search",
+            "mcp__crypto__defillama_protocol",
+            "mcp__crypto__defillama_chains",
+            "mcp__crypto__etherscan_balance",
+            "mcp__crypto__etherscan_token_balance",
+            "mcp__crypto__solscan_account",
+            "mcp__crypto__binance_ohlcv",
         ],
         permission_mode="acceptEdits",
         cwd=cwd or os.getcwd(),
